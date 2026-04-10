@@ -4,9 +4,9 @@ const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../pages/LoginPage');
 const { InventoryPage } = require('../pages/InventoryPage');
 
-test.describe('Login Tests', () => {
+test.describe('Testes de Login', () => {
 
-    test('Successful Login', async ({ page }) => {
+    test('Login/Logout com sucesso', async ({ page }) => {
 
         const loginPage = new LoginPage(page);
         const inventoryPage = new InventoryPage(page);
@@ -21,7 +21,7 @@ test.describe('Login Tests', () => {
 
     });
 
-    test('Failed Login with Invalid Credentials', async ({ page }) => {
+    test('Falha com credenciais inválidas', async ({ page }) => {
 
         const loginPage = new LoginPage(page);
 
@@ -30,7 +30,7 @@ test.describe('Login Tests', () => {
 
         // Verificar se o login falhou exibindo a mensagem de erro
         await expect(loginPage.errorMessage).toBeVisible();
-        
+
     });
 
 });
