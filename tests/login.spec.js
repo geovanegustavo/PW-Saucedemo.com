@@ -7,6 +7,7 @@ const { InventoryPage } = require('../pages/InventoryPage');
 test.describe('Login Tests', () => {
 
     test('Successful Login', async ({ page }) => {
+
         const loginPage = new LoginPage(page);
         const inventoryPage = new InventoryPage(page);
 
@@ -21,6 +22,7 @@ test.describe('Login Tests', () => {
     });
 
     test('Failed Login with Invalid Credentials', async ({ page }) => {
+
         const loginPage = new LoginPage(page);
 
         await loginPage.navigateToUrl();
@@ -28,6 +30,7 @@ test.describe('Login Tests', () => {
 
         // Verificar se o login falhou exibindo a mensagem de erro
         await expect(loginPage.errorMessage).toBeVisible();
+        
     });
 
 });
