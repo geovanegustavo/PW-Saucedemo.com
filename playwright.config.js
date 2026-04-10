@@ -26,11 +26,14 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'http://localhost:3000',
-
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    baseURL: 'https://www.saucedemo.com',
+    headless: false,
+    viewport: null, // respeita o tamanho real da janela
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    launchOptions: {
+      args: ['--start-maximized'],
+    },
   },
 
   /* Configure projects for major browsers */
