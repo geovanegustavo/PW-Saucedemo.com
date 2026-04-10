@@ -1,7 +1,7 @@
 
 # Playwright
 node_modules/
-tests/example.spec.ts
+/tests/example.spec.ts
 /test-results/
 /playwright-report/
 /blob-report/
