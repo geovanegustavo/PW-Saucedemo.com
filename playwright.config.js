@@ -27,7 +27,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     baseURL: 'https://www.saucedemo.com',
-    headless: true,
+    headless: false,
     viewport: null, // respeita o tamanho real da janela
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
@@ -40,7 +40,11 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'],
+        launchOptions: {
+          args: ['--lang=en-US'], // força idioma do navegador
+        },
+      },
     },
 
     {
