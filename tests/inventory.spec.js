@@ -101,4 +101,31 @@ test.describe('Testes de Inventário', () => {
 
     });
 
+    test('Adicionar e remover produto do carrinho', async ({ page }) => {
+
+        const loginPage = new LoginPage(page);
+        const inventoryPage = new InventoryPage(page);
+
+        await loginPage.navigateToUrl();
+
+        await loginPage.login('standard_user', 'secret_sauce');
+
+        // Verificar se o login foi bem-sucedido redirecionando para a página de inventário
+        await expect(page).toHaveURL(/.*inventory.html/);
+
+        // Adicionar um produto ao carrinho
+        const productName = 'Sauce Labs Backpack';
+        await inventoryPage.addProductToCart(productName);
+
+        await inventoryPage.expectProductButtonText(productName, 'Remove');
+
+        const cartItemCount = await inventoryPage.getCartItemCount();
+        expect(cartItemCount).toBe(1);
+
+        await inventoryPage.removeProductFromCart(productName);
+
+        await inventoryPage.expectProductButtonText(productName, 'Add to cart');
+
+    });
+
 });
