@@ -14,6 +14,7 @@ class InventoryPage {
         this.productsNames = page.locator('.inventory_item_name');
         this.productsPrices = page.locator('.inventory_item_price');
         this.shoppingCartBadge = page.locator('[data-test="shopping-cart-badge"]');
+        this.shoppingCartLink = page.locator('[data-test="shopping-cart-link"]');
 
     }
 
@@ -44,11 +45,15 @@ class InventoryPage {
         await removeFromCartButton.click();
     }
 
-    //
+    // 
     async expectProductButtonText(productName, expectedText) {
         const productLocator = this.page.locator(`.inventory_item:has-text("${productName}")`);
         const buttonText = await productLocator.locator('button').textContent();
         expect(buttonText).toBe(expectedText);
+    }
+
+    async visitCart() {
+        await this.shoppingCartLink.click();
     }
 
     // ── Getters ────────────────────────────────────────────────────────────────

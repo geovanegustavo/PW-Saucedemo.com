@@ -126,6 +126,8 @@ test.describe('Testes de Inventário', () => {
 
         await inventoryPage.expectProductButtonText(productName, 'Add to cart');
 
+        await inventoryPage.visitCart();
+
     });
 
 });
