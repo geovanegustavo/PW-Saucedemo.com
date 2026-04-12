@@ -1,8 +1,10 @@
 // tests/inventory.spec.js
 
+require('dotenv').config();
 const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../pages/LoginPage');
 const { InventoryPage } = require('../pages/InventoryPage');
+
 
 test.describe('Testes de Inventário', () => {
 
@@ -11,8 +13,8 @@ test.describe('Testes de Inventário', () => {
         const loginPage = new LoginPage(page);
         const inventoryPage = new InventoryPage(page);
 
-        await loginPage.navigateToUrl();
-        await loginPage.login('standard_user', 'secret_sauce');
+        await loginPage.navigateToUrl(process.env.SF_URL);
+        await loginPage.login(process.env.SF_USERNAME, process.env.SF_PASSWORD);
 
         // Verificar se o login foi bem-sucedido redirecionando para a página de inventário
         await expect(page).toHaveURL(/.*inventory.html/);
@@ -34,8 +36,8 @@ test.describe('Testes de Inventário', () => {
         const loginPage = new LoginPage(page);
         const inventoryPage = new InventoryPage(page);
 
-        await loginPage.navigateToUrl();
-        await loginPage.login('standard_user', 'secret_sauce');
+        await loginPage.navigateToUrl(process.env.SF_URL);
+        await loginPage.login(process.env.SF_USERNAME, process.env.SF_PASSWORD);
 
         // Verificar se o login foi bem-sucedido redirecionando para a página de inventário
         await expect(page).toHaveURL(/.*inventory.html/);
@@ -56,8 +58,8 @@ test.describe('Testes de Inventário', () => {
         const loginPage = new LoginPage(page);
         const inventoryPage = new InventoryPage(page);
 
-        await loginPage.navigateToUrl();
-        await loginPage.login('standard_user', 'secret_sauce');
+        await loginPage.navigateToUrl(process.env.SF_URL);
+        await loginPage.login(process.env.SF_USERNAME, process.env.SF_PASSWORD);
 
         // Verificar se o login foi bem-sucedido redirecionando para a página de inventário
         await expect(page).toHaveURL(/.*inventory.html/);
@@ -81,8 +83,8 @@ test.describe('Testes de Inventário', () => {
         const loginPage = new LoginPage(page);
         const inventoryPage = new InventoryPage(page);
 
-        await loginPage.navigateToUrl();
-        await loginPage.login('standard_user', 'secret_sauce');
+        await loginPage.navigateToUrl(process.env.SF_URL);
+        await loginPage.login(process.env.SF_USERNAME, process.env.SF_PASSWORD);
 
         // Verificar se o login foi bem-sucedido redirecionando para a página de inventário
         await expect(page).toHaveURL(/.*inventory.html/);
@@ -106,9 +108,8 @@ test.describe('Testes de Inventário', () => {
         const loginPage = new LoginPage(page);
         const inventoryPage = new InventoryPage(page);
 
-        await loginPage.navigateToUrl();
-
-        await loginPage.login('standard_user', 'secret_sauce');
+        await loginPage.navigateToUrl(process.env.SF_URL);
+        await loginPage.login(process.env.SF_USERNAME, process.env.SF_PASSWORD);
 
         // Verificar se o login foi bem-sucedido redirecionando para a página de inventário
         await expect(page).toHaveURL(/.*inventory.html/);

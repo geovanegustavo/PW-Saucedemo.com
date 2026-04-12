@@ -1,5 +1,6 @@
 // tests/login.spec.js
 
+require('dotenv').config();
 const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../pages/LoginPage');
 const { InventoryPage } = require('../pages/InventoryPage');
@@ -11,8 +12,8 @@ test.describe('Login no sistema', () => {
         const loginPage = new LoginPage(page);
         const inventoryPage = new InventoryPage(page);
 
-        await loginPage.navigateToUrl();
-        await loginPage.login('standard_user', 'secret_sauce');
+        await loginPage.navigateToUrl(process.env.SF_URL);
+        await loginPage.login(process.env.SF_USERNAME, process.env.SF_PASSWORD);
 
         // Verificar se o login foi bem-sucedido redirecionando para a página de inventário
         await expect(page).toHaveURL(/.*inventory.html/);
@@ -25,7 +26,7 @@ test.describe('Login no sistema', () => {
 
         const loginPage = new LoginPage(page);
 
-        await loginPage.navigateToUrl();
+        await loginPage.navigateToUrl(process.env.SF_URL);
         await loginPage.login('invalid_user', 'invalid_password');
 
         // Verificar se o login falhou exibindo a mensagem de erro
@@ -45,7 +46,7 @@ test.describe('Login no sistema', () => {
 
         const loginPage = new LoginPage(page);
 
-        await loginPage.navigateToUrl();
+        await loginPage.navigateToUrl(process.env.SF_URL);
         await loginPage.login('', '');
 
         // Verificar se o login falhou exibindo a mensagem de erro
@@ -65,8 +66,8 @@ test.describe('Login no sistema', () => {
 
         const loginPage = new LoginPage(page);
 
-        await loginPage.navigateToUrl();
-        await loginPage.login('', 'secret_sauce');
+        await loginPage.navigateToUrl(process.env.SF_URL);
+        await loginPage.login('', process.env.SF_PASSWORD);
 
         // Verificar se o login falhou exibindo a mensagem de erro
         await expect(loginPage.errorMessage).toBeVisible();
@@ -85,8 +86,8 @@ test.describe('Login no sistema', () => {
 
         const loginPage = new LoginPage(page);
 
-        await loginPage.navigateToUrl();
-        await loginPage.login('standard_user', '');
+        await loginPage.navigateToUrl(process.env.SF_URL);
+        await loginPage.login(process.env.SF_USERNAME, '');
 
         // Verificar se o login falhou exibindo a mensagem de erro
         await expect(loginPage.errorMessage).toBeVisible();
