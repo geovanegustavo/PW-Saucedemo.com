@@ -41,7 +41,7 @@ test.describe('Testes do Checkout', () => {
 
         await expect(page).toHaveURL(/.*checkout-step-one.html/);
 
-        await checkoutPage.clickContinueButtonAction();
+        await checkoutPage.clickContinueButton();
 
     });
 

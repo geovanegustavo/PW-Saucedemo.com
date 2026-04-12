@@ -13,7 +13,7 @@ class CheckoutPage {
         this.lastName = page.locator('last-name');
         this.postalCode = page.locator('postal-code');
         this.cancelButton = page.locator('cancel');
-        this.continueButton = page.locator('continue');
+        this.continueButton = page.locator('[data-test="continue"]');
         this.errorMessage = page.locator('[data-test="error"]');
 
     }
@@ -30,7 +30,7 @@ class CheckoutPage {
         await this.cancelButton.click();
     }
 
-    async clickContinueButtonAction() {
+    async clickContinueButton() {
         await this.continueButton.click();
     }
 
