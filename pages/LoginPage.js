@@ -20,8 +20,8 @@ class LoginPage {
     // ── Actions ────────────────────────────────────────────────────────────────
 
     // Method to navigate to the login page
-    async navigateToUrl() {
-        await this.page.goto('/');  // baseURL definida no playwright.config.js
+    async navigateToUrl(url = process.env.SF_URL) {
+        await this.page.goto(url); // baseURL definida no playwright.config.js
     }
 
     // Method to perform login action
