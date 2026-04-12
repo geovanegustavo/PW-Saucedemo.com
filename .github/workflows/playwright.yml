@@ -17,7 +17,7 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Validar sincronização Gherkin ↔ Playwright
+    - name: Validar sincronização entre Gherkin e Playwright
       run: node scripts/validate-sync.js
     - name: Run Playwright tests
       run: npx playwright test
