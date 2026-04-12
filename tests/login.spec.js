@@ -4,7 +4,7 @@ const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../pages/LoginPage');
 const { InventoryPage } = require('../pages/InventoryPage');
 
-test.describe('Testes de Login', () => {
+test.describe('Login no sistema', () => {
 
     test('Login/Logout com sucesso', async ({ page }) => {
 
