@@ -32,17 +32,31 @@ class InventoryPage {
     }
 
     // Method to add a product in the cart
+    //async addProductToCart(productName) {
+    //    const productLocator = this.page.locator(`.inventory_item:has-text("${productName}")`);
+    //    const addToCartButton = productLocator.locator('button');
+    //    await addToCartButton.click();
+    //}
     async addProductToCart(productName) {
         const productLocator = this.page.locator(`.inventory_item:has-text("${productName}")`);
         const addToCartButton = productLocator.locator('button');
+        await addToCartButton.waitFor({ state: 'visible' });
         await addToCartButton.click();
+        await expect(addToCartButton).toHaveText('Remove'); // garante que mudou
     }
 
     // Method to remove a product from the cart
+    //async removeProductFromCart(productName) {
+    //    const productLocator = this.page.locator(`.inventory_item:has-text("${productName}")`);
+    //    const removeFromCartButton = productLocator.locator('button');
+    //    await removeFromCartButton.click();
+    //}
     async removeProductFromCart(productName) {
         const productLocator = this.page.locator(`.inventory_item:has-text("${productName}")`);
         const removeFromCartButton = productLocator.locator('button');
+        await removeFromCartButton.waitFor({ state: 'visible' });
         await removeFromCartButton.click();
+        await expect(removeFromCartButton).toHaveText('Add to cart'); // garante que voltou
     }
 
     // 
