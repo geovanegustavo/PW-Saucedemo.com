@@ -12,11 +12,12 @@ test.describe('Login no sistema', () => {
 
     // Executa uma vez antes de todos os testes
     test.beforeAll(async () => {
-        console.log('Iniciando ambiente de testes...');
+        console.log('Iniciando testes...');
     });
 
     // Executa antes de cada teste
     test.beforeEach(async ({ page }) => {
+        console.log('Acessando página de login...');
         loginPage = new LoginPage(page);
         inventoryPage = new InventoryPage(page);
         await loginPage.navigateToUrl(process.env.SF_URL);
@@ -24,7 +25,7 @@ test.describe('Login no sistema', () => {
 
     // Executa depois de cada teste
     test.afterEach(async () => {
-        console.log('Teste finalizado, limpando dados...');
+        console.log('Teste finalizado!');
     });
 
     test('Login/Logout com sucesso', async ({ page }) => {
@@ -41,28 +42,26 @@ test.describe('Login no sistema', () => {
 
     });
 
-    // Teste de falha com credenciais inválidas
     test('Falha com credenciais inválidas', async () => {
 
         await test.step('Tentar login com usuário e senha incorretos', async () => {
 
             await loginPage.login('invalid_user', 'invalid_password');
+
             await expect(loginPage.errorMessage).toBeVisible();
             await expect(loginPage.errorMessage).toHaveText(
                 'Epic sadface: Username and password do not match any user in this service'
             );
+
         });
 
         await test.step('Fechar mensagem de erro', async () => {
-
             await loginPage.closeErrorMessage();
             await expect(loginPage.errorMessage).not.toBeVisible();
-
         });
 
     });
 
-    // Teste de falha com campos vazios
     test('Falha com campos vazios', async () => {
 
         await test.step('Tentar login com campos vazios', async () => {
@@ -77,12 +76,10 @@ test.describe('Login no sistema', () => {
         });
 
         await test.step('Fechar mensagem de erro', async () => {
-
             await loginPage.closeErrorMessage();
-
             await expect(loginPage.errorMessage).not.toBeVisible();
-
         });
+    
     });
 
     // Teste de falha com login vazio
@@ -100,12 +97,10 @@ test.describe('Login no sistema', () => {
         });
 
         await test.step('Fechar mensagem de erro', async () => {
-
             await loginPage.closeErrorMessage();
-
             await expect(loginPage.errorMessage).not.toBeVisible();
-
         });
+
     });
 
     // Teste de falha com senha vazia
@@ -123,11 +118,10 @@ test.describe('Login no sistema', () => {
         });
 
         await test.step('Fechar mensagem de erro', async () => {
-
             await loginPage.closeErrorMessage();
             await expect(loginPage.errorMessage).not.toBeVisible();
-
         });
+        
     });
 
 });
